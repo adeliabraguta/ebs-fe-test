@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+type Props = {
+     $isInCart?: boolean;
+ }
+
 export const ProductContainer = styled.div`
     display: grid;
     grid-template-rows: 1fr max-content;
@@ -46,18 +50,19 @@ export const ProductContainer = styled.div`
     }
 `
 
-export const CartButton = styled.button`
+export const CartButton = styled.button<Props>`
     background-color: transparent;
     border: none;
     width: min-content;
-    .icon{
+
+    .icon {
         cursor: pointer;
-        color: #B44D12;
+        color: ${({$isInCart}) => ($isInCart ? "#B44D12" : "#cb6e17")};
         width: 24px;
         height: 24px;
         transition: var(--transition);
         &:hover{
-            color: #2E7B06;
+            color: ${({$isInCart}) => ($isInCart ? " #EF4E4E" : "#F0B429")};
         }
     }
 `
