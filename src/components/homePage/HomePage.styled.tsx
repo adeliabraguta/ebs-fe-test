@@ -20,7 +20,7 @@ export const ProductsContainer = styled.div`
     row-gap: 64px;
 `
 
-export const Pagination = styled.section`
+export const PaginationContainer = styled.section`
     padding-top: 64px;
     display: flex;
     gap: 32px;

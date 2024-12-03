@@ -1,12 +1,21 @@
 import {useFetchProducts} from "../../hooks/useFetchProducts.ts";
-import { useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import ProductComponent from "../productComponent/ProductComponent.tsx";
 import {Product} from "../../types/productTypes.ts";
-import {HomeContainer, Pagination, ProductsContainer} from "./HomePage.styled.tsx";
+import {HomeContainer, PaginationContainer, ProductsContainer} from "./HomePage.styled.tsx";
 import PaginationButton from "../UI/PaginationButton.tsx";
+import FilterComponent from "../features/filtering/FilterComponent.tsx";
+import {GlobalContext, GlobalContextType} from "../../context/GlobalContext.tsx";
 
 const HomePage = () => {
-    const {products, isLoading, error} = useFetchProducts('https://fakestoreapi.com/products')
+    const {filterParam} = useContext(GlobalContext) as GlobalContextType
+    console.log(filterParam)
+    const {products, isLoading, error, fetchData} = useFetchProducts()
+
+    useEffect(() => {
+        fetchData(`https://fakestoreapi.com/products${filterParam ? `/category/${filterParam}` : ""}`)
+    }, [filterParam])
+
     const limit = 8;
     const [page, setPage] = useState<number>(1);
     const startIndex: number = (page - 1) * limit
@@ -22,10 +31,12 @@ const HomePage = () => {
             behavior: "smooth"
         })
     }
+
     const handleNextPage = () => {
         setPage((prev) => prev + 1)
         handleScrollToTop()
     }
+
     const handleBackPage = () => {
         setPage((prev) => prev - 1)
         handleScrollToTop()
@@ -38,15 +49,18 @@ const HomePage = () => {
 
     return (
         <HomeContainer>
+            <FilterComponent/>
+
             {isLoading && <div>Loading...</div>}
             {error && <div>{error}</div>}
+
             <ProductsContainer>
                 {paginatedProducts.map((product: Product) => (
                     <ProductComponent key={product.id} product={product}/>
                 ))}
             </ProductsContainer>
 
-            <Pagination>
+            <PaginationContainer>
                 <PaginationButton disabled={page === 1}
                                   onClick={handleBackPage}>Back</PaginationButton>
 
@@ -57,7 +71,7 @@ const HomePage = () => {
 
                 <PaginationButton disabled={endIndex >= products.length}
                                   onClick={handleNextPage}>Next</PaginationButton>
-            </Pagination>
+            </PaginationContainer>
         </HomeContainer>
     );
 };
