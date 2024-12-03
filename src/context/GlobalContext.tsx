@@ -1,5 +1,5 @@
 import React, {createContext, ReactNode, useState} from "react";
-import {Product} from "../../types/productTypes.ts";
+import {Product} from "../types/productTypes.ts";
 
 type GlobalContextType = {
     cartProducts: Product[]
