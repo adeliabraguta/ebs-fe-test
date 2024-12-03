@@ -8,9 +8,9 @@ type ChildrenType = {
     $isCurrent?: boolean
 }
 
-const PaginationButton: React.FC<ChildrenType> = ({children}) => {
+const PaginationButton: React.FC<ChildrenType> = ({children, disabled, onClick}) => {
     return (
-        <Button>
+        <Button disabled={disabled} onClick={onClick}>
             {children}
         </Button>
     );
