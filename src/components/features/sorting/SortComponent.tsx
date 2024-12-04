@@ -1,11 +1,11 @@
-import React, {useContext} from "react";
-import {GlobalContext, GlobalContextType} from "../../../context/GlobalContext.tsx";
+import React from "react";
+import {useGlobalContext} from "../../../context/GlobalContext.tsx";
 import {SortType} from "../../../types/productTypes.ts";
 import {SortContainer, SortSelector} from "./SortComponent.styled.tsx";
 import {MdOutlineSort} from "react-icons/md";
 
 const SortComponent = () => {
-    const {addSortParam} = useContext(GlobalContext) as GlobalContextType
+    const {addSortParam} = useGlobalContext()
 
     const handleParam = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const selectedParam = (e.target as HTMLSelectElement).value

@@ -1,11 +1,10 @@
 import {Product} from "../../types/productTypes.ts";
 import {CartButton, ProductContainer} from "./ProductComponent.styled.tsx";
 import {BsCartPlus, BsCartX} from "react-icons/bs";
-import {useContext} from "react";
-import {GlobalContext, GlobalContextType} from "../../context/GlobalContext.tsx";
+import {useGlobalContext} from "../../context/GlobalContext.tsx";
 
 const ProductComponent = ({product}: { product: Product }) => {
-    const {addToCart, removeFromCart, checkCart} = useContext(GlobalContext) as GlobalContextType;
+    const {addToCart, removeFromCart, checkCart} = useGlobalContext()
 
     const addProductToCart = (product: Product) => {
         addToCart(product)

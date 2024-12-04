@@ -1,4 +1,4 @@
-import React, {createContext, ReactNode, useState} from "react";
+import React, {createContext, ReactNode, useContext, useState} from "react";
 import {Product, SortType} from "../types/productTypes.ts";
 
 export type GlobalContextType = {
@@ -115,4 +115,32 @@ const GlobalProvider: React.FC<{ children: ReactNode }> = ({children}) => {
     );
 };
 
+export const useGlobalContext = () => {
+    const context = useContext(GlobalContext);
+
+    if (!context) {
+        console.warn('useGlobalContext must be used within a GlobalContext.Provider');
+
+        return {
+            cart: [] as Product[],
+            addToCart: () => {},
+            removeFromCart: () => {},
+            checkCart: () => false,
+            filterParam: '',
+            addFilterParam: () => {},
+            sortParam: '' as SortType,
+            addSortParam: () => {},
+            totalPrice: 0,
+            countTotalPrice: () => {},
+            increaseQuantity: () => {},
+            decreaseQuantity: () => {},
+            clearCart: () => {},
+            applyPromoCode: () => {},
+            searchParam: '',
+            addSearchParam: () => {},
+        };
+    }
+
+    return context;
+};
 export default GlobalProvider;

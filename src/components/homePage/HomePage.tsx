@@ -1,17 +1,17 @@
 import {useFetchProducts} from "../../hooks/useFetchProducts.ts";
-import {useContext, useState} from "react";
+import {useState} from "react";
 import ProductComponent from "../productComponent/ProductComponent.tsx";
 import {Product} from "../../types/productTypes.ts";
 import {HomeContainer, PaginationContainer, ProductsContainer, ProductsFilter} from "./HomePage.styled.tsx";
 import PaginationButton from "../UI/PaginationButton.tsx";
 import FilterComponent from "../features/filtering/FilterComponent.tsx";
-import {GlobalContext, GlobalContextType} from "../../context/GlobalContext.tsx";
+import {useGlobalContext} from "../../context/GlobalContext.tsx";
 import Popup from "./popup/Popup.tsx";
 import SortComponent from "../features/sorting/SortComponent.tsx";
 import {HiChevronLeft} from "react-icons/hi";
 
 const HomePage = () => {
-    const {filterParam, sortParam, searchParam, addSearchParam} = useContext(GlobalContext) as GlobalContextType
+    const {filterParam, sortParam, searchParam, addSearchParam} =useGlobalContext()
     const {
         products,
         isLoading,

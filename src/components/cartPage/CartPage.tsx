@@ -1,5 +1,5 @@
-import {useContext, useEffect, useState} from "react";
-import {GlobalContext, GlobalContextType} from "../../context/GlobalContext.tsx";
+import { useEffect, useState} from "react";
+import {useGlobalContext} from "../../context/GlobalContext.tsx";
 import ProductComponentCart from "./itemComponent/ProductComponentCart.tsx";
 import {CartContainer, CartPageContainer} from "./CartPage.styled.tsx";
 import PaginationButton from "../UI/PaginationButton.tsx";
@@ -16,12 +16,16 @@ const CartPage = () => {
         totalPrice,
         countTotalPrice,
         clearCart,
-        applyPromoCode
-    } = useContext(GlobalContext) as GlobalContextType;
+        applyPromoCode,
+        increaseQuantity,
+        decreaseQuantity
+    } = useGlobalContext();
+
     const [promoCode, setPromoCode] = useState<string>('');
+
     useEffect(() => {
         countTotalPrice()
-    }, [promoCode])
+    }, [promoCode, increaseQuantity,decreaseQuantity])
 
     const handlePromoCode = () => {
         if (promoCode === PromoCode.PERCENTAGE15) {

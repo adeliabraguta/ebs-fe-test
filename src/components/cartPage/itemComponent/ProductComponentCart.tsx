@@ -1,14 +1,11 @@
 import {HiMinusSmall, HiOutlinePlusSmall} from "react-icons/hi2";
 import {IoCloseOutline} from "react-icons/io5";
 import {ProductCart} from "./ProductComponentCart.styled.tsx";
-import {useContext} from "react";
-import { GlobalContext, GlobalContextType} from "../../../context/GlobalContext.tsx";
+import {useGlobalContext} from "../../../context/GlobalContext.tsx";
 import {Product} from "../../../types/productTypes.ts";
 
 const ProductComponentCart = ({product}: { product: Product }) => {
-    const {increaseQuantity, decreaseQuantity, removeFromCart} = useContext(GlobalContext) as GlobalContextType;
-
-
+    const {increaseQuantity, decreaseQuantity, removeFromCart} = useGlobalContext()
 
     return (
         <ProductCart>
@@ -21,9 +18,9 @@ const ProductComponentCart = ({product}: { product: Product }) => {
             </div>
 
             <div className={"quantity"}>
-                <button onClick={() => decreaseQuantity(product)}><HiMinusSmall/></button>
+                <button onClick={() => decreaseQuantity(product)} data-testid={`decrease-quantity-${product.id}`}><HiMinusSmall/></button>
                 <span>{product.quantity}</span>
-                <button onClick={() => increaseQuantity(product)}><HiOutlinePlusSmall/></button>
+                <button  onClick={() => increaseQuantity(product)} data-testid={`increase-quantity-${product.id}`}><HiOutlinePlusSmall/></button>
             </div>
 
             <span className={"price"}>$ {product.price}</span>
