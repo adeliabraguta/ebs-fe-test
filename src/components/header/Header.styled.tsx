@@ -11,8 +11,9 @@ export const HeaderContainer = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    z-index: 2;
 
-    div {
+    .top-elements {
         display: flex;
         flex-direction: column;
         gap: 32px;
@@ -30,6 +31,9 @@ export const HeaderContainer = styled.div`
             &:hover {
                 color: #fff;
             }
+        }
+        .search{
+            
         }
     }
 

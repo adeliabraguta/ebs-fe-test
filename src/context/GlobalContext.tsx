@@ -1,19 +1,6 @@
 import React, {createContext, ReactNode, useState} from "react";
-import {Product, SortType} from "../types/productTypes.ts";
+import {CartProduct, Product, SortType} from "../types/productTypes.ts";
 
-export type CartProduct = {
-    id: number;
-    title: string;
-    price: number;
-    description: string;
-    category: string;
-    image: string;
-    rating: {
-        rete: number;
-        count: number
-    },
-    quantity: number;
-}
 export type GlobalContextType = {
     cart: CartProduct[];
     addToCart: (product: CartProduct) => void;
@@ -29,6 +16,8 @@ export type GlobalContextType = {
     decreaseQuantity: (product: CartProduct) => void
     clearCart: () => void;
     applyPromoCode: () => void;
+    searchParam: string
+    addSearchParam: (param: string) => void;
 }
 
 export const GlobalContext = createContext<GlobalContextType | null>(null)
@@ -38,12 +27,13 @@ const GlobalProvider: React.FC<{ children: ReactNode }> = ({children}) => {
     const [filterParam, setFilterParam] = useState<string>('');
     const [sortParam, setSortParam] = useState<SortType>('')
     const [totalPrice, setTotalPrice] = useState<number>(0)
+    const [searchParam, setSearchParam] = useState<string>('')
+
     const addToCart = (product: CartProduct) => {
         product.quantity = 1
         if (!cart.some(p => p.id === product.id)) {
             setCart(prev => [...prev, product])
         }
-        console.log(cart)
     }
 
     const removeFromCart = (product: CartProduct) => {
@@ -91,10 +81,14 @@ const GlobalProvider: React.FC<{ children: ReactNode }> = ({children}) => {
     }
 
     const applyPromoCode = () => {
-        setTotalPrice((prev:number) => {
+        setTotalPrice((prev: number) => {
             const price = prev - (prev * (15 / 100))
             return Number(price.toFixed(2))
         })
+    }
+
+    const addSearchParam = (param: string) => {
+        setSearchParam(param)
     }
 
     return (
@@ -112,7 +106,9 @@ const GlobalProvider: React.FC<{ children: ReactNode }> = ({children}) => {
             increaseQuantity,
             decreaseQuantity,
             clearCart,
-            applyPromoCode
+            applyPromoCode,
+            searchParam,
+            addSearchParam
         }}>
             {children}
         </GlobalContext.Provider>

@@ -2,7 +2,8 @@ import {HiMinusSmall, HiOutlinePlusSmall} from "react-icons/hi2";
 import {IoCloseOutline} from "react-icons/io5";
 import {ProductCart} from "./ProductComponentCart.styled.tsx";
 import {useContext} from "react";
-import {CartProduct, GlobalContext, GlobalContextType} from "../../../context/GlobalContext.tsx";
+import { GlobalContext, GlobalContextType} from "../../../context/GlobalContext.tsx";
+import {CartProduct} from "../../../types/productTypes.ts";
 
 const ProductComponentCart = ({product}: { product: CartProduct }) => {
     const {increaseQuantity, decreaseQuantity, removeFromCart} = useContext(GlobalContext) as GlobalContextType;

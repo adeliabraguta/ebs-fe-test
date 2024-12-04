@@ -6,21 +6,32 @@ import {HomeContainer, PaginationContainer, ProductsContainer, ProductsFilter} f
 import PaginationButton from "../UI/PaginationButton.tsx";
 import FilterComponent from "../features/filtering/FilterComponent.tsx";
 import {GlobalContext, GlobalContextType} from "../../context/GlobalContext.tsx";
-import SortComponent from "../features/sorting/sortComponent.tsx";
 import Popup from "./popup/Popup.tsx";
+import SortComponent from "../features/sorting/SortComponent.tsx";
+import {HiChevronLeft} from "react-icons/hi";
 
 const HomePage = () => {
-    const {filterParam, sortParam} = useContext(GlobalContext) as GlobalContextType
-    const {products, isLoading, error} = useFetchProducts(`https://fakestoreapi.com/products${filterParam ? `/category/${filterParam}` : ""}`)
-    const finalProducts = sortParam
-        ? [...products].sort((a: Product, b: Product) => (sortParam === "asc" ? a.price - b.price : b.price - a.price))
-        : products;
+    const {filterParam, sortParam, searchParam, addSearchParam} = useContext(GlobalContext) as GlobalContextType
+    const {
+        products,
+        isLoading,
+        error
+    } = useFetchProducts(`https://fakestoreapi.com/products${filterParam ? `/category/${filterParam}` : ""}`)
+    let finalProducts
+
+    if (sortParam) {
+        finalProducts = [...products].sort((a: Product, b: Product) => (sortParam === "asc" ? a.price - b.price : b.price - a.price))
+    } else if (searchParam) {
+        finalProducts = [...products].filter((product) => product.title.toLowerCase().includes(searchParam.toLowerCase()))
+    } else {
+        finalProducts = products
+    }
 
     const limit = 8;
     const [page, setPage] = useState<number>(1);
     const startIndex: number = (page - 1) * limit
     const endIndex: number = startIndex + limit
-    const paginatedProducts: Product[] = finalProducts.slice(startIndex, endIndex)
+    const paginatedProducts: Product[] = finalProducts && finalProducts.slice(startIndex, endIndex)
     const totalPagesNr: number = Math.ceil(Number(finalProducts.length) / limit)
     const totalPages: number[] = Array.from({length: totalPagesNr}, (_, i) => i + 1) ?? []
 
@@ -47,6 +58,11 @@ const HomePage = () => {
         handleScrollToTop()
     }
 
+    const handleBackToAllProducts = () => {
+        handleScrollToTop()
+        addSearchParam('')
+    }
+
     return (
         <HomeContainer>
             <Popup/>
@@ -58,25 +74,35 @@ const HomePage = () => {
 
             {isLoading && <div>Loading...</div>}
             {error && <div>{error}</div>}
+            {paginatedProducts.length === 0 &&
+                <div className={"no-products"}>
+                    <button onClick={handleBackToAllProducts}><HiChevronLeft className={"icon"}/>Back to all products</button>
+                    <p>No products found with title <b>" {searchParam} "</b></p>
+                </div>}
 
             <ProductsContainer>
                 {paginatedProducts.map((product: Product) => (
                     <ProductComponent key={product.id} product={product}/>
                 ))}
+
             </ProductsContainer>
 
-            <PaginationContainer>
-                <PaginationButton disabled={page === 1}
-                                  onClick={handleBackPage}>Back</PaginationButton>
+            {paginatedProducts.length > 0 && (
 
-                {totalPages.map((p, index) => (
-                    <PaginationButton $isCurrent={p === page} key={index}
-                                      onClick={() => handleCurrentPage(p)}>{p}</PaginationButton>
-                ))}
+                <PaginationContainer>
 
-                <PaginationButton disabled={endIndex >= products.length}
-                                  onClick={handleNextPage}>Next</PaginationButton>
-            </PaginationContainer>
+                    <PaginationButton disabled={page === 1}
+                                      onClick={handleBackPage}>Back</PaginationButton>
+
+                    {totalPages.map((p, index) => (
+                        <PaginationButton $isCurrent={p === page} key={index}
+                                          onClick={() => handleCurrentPage(p)}>{p}</PaginationButton>
+                    ))}
+
+                    <PaginationButton disabled={endIndex >= products.length}
+                                      onClick={handleNextPage}>Next</PaginationButton>
+                </PaginationContainer>
+            )}
         </HomeContainer>
     );
 };

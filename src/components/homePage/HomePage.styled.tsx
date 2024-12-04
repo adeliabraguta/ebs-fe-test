@@ -7,6 +7,26 @@ export const HomeContainer = styled.section`
     justify-content: space-between;
     align-items: center;
     min-height: calc(100vh - 115px);
+    .no-products{
+        button{
+            background-color: transparent;
+            border: none;
+            color: #7E7E7E;
+            font-size: 16px;
+            padding-bottom: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: var(--transition);
+            &:hover{
+                color: #DE911D;
+            }
+            .icon{
+                font-size: 20px;
+            }
+        }
+    }
 `
 
 export const ProductsFilter = styled.section`
