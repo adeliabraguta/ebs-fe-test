@@ -39,7 +39,7 @@ const CartPage = () => {
                 ))}
             </CartContainer>
             <div className={"cart-options"}>
-                <Link to={"/"}><HiChevronLeft/>CONTINUE SHOPPING</Link>
+                <Link to={"/ebs-fe-test/"}><HiChevronLeft/>CONTINUE SHOPPING</Link>
                 {cart.length > 0 &&
                     (<div>
                         <div className={"promocode-container"}>
