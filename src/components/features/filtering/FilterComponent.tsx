@@ -26,7 +26,7 @@ const FilterComponent = () => {
     return (
         <FilterContainer ref={filerRef}>
             <span onClick={toggleFilter}><FiFilter/>Filter</span>
-            <FilterPopup isOpen={isFilterOpen}/>
+            <FilterPopup isFilterOpen={isFilterOpen} setIsFilterOpen={setIsFilterOpen}/>
         </FilterContainer>
     );
 };

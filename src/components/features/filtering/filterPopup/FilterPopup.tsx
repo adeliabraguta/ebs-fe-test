@@ -3,7 +3,12 @@ import {useFetchCategories} from "../../../../hooks/useFetchCategories.ts";
 import React, {useContext, useState} from "react";
 import {GlobalContext, GlobalContextType} from "../../../../context/GlobalContext.tsx";
 
-const FilterPopup = ({isOpen}: { isOpen: boolean }) => {
+type FilterType = {
+    isFilterOpen: boolean
+    setIsFilterOpen: (isFilterOpen:boolean) => void
+}
+
+const FilterPopup = ({isFilterOpen, setIsFilterOpen}: FilterType) => {
     const {addFilterParam} = useContext(GlobalContext) as GlobalContextType
     const {categories} = useFetchCategories('https://fakestoreapi.com/products/categories')
     const [selectedCheckbox, setSelectedCheckbox] = useState<string| null>(null)
@@ -16,10 +21,11 @@ const FilterPopup = ({isOpen}: { isOpen: boolean }) => {
     const toggleCheckboxes = (val: string, e: React.ChangeEvent<HTMLInputElement>) => {
         setSelectedCheckbox(prev => prev === val ? null : val)
         handleParams(e)
+        setIsFilterOpen(false)
     }
 
     return (
-        <FilterPopupContainer $isOpen={isOpen}>
+        <FilterPopupContainer $isOpen={isFilterOpen}>
                 {categories.map((category, index) => (
                     <div key={index}><input type={"checkbox"} value={category} name={'category'} checked={selectedCheckbox === category}
                                             onChange={(e) => toggleCheckboxes(category, e)}/> <span>{category}</span></div>
