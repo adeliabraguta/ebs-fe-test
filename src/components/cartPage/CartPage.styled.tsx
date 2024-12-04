@@ -32,6 +32,32 @@ export const CartPageContainer = styled.div`
                 color: #CB6E17;
             }
         }
+        .promocode-container{
+            display: flex;
+            gap: 8px;
+            input{
+                padding: 4px;
+                background-color: #fff;
+                border: 2px solid #F7C948;
+                color: #222;
+                &:focus{
+                    outline: none;
+                    border-color: #DE911D;
+                }
+            }
+            button{
+                padding: 4px;
+                background-color: #F7C948;
+                color: #fff;
+                border: 2px solid #F7C948;
+                cursor: pointer;
+                transition: var(--transition);
+                &:hover{
+                    background-color: #CB6E17;
+                    border-color: #CB6E17;
+                }
+            }
+        }
     }
 `
 

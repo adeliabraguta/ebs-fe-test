@@ -23,10 +23,12 @@ export type GlobalContextType = {
     addFilterParam: (param: string) => void;
     sortParam: SortType
     addSortParam: (param: SortType) => void
-    countTotalPrice: () => number;
+    totalPrice: number
+    countTotalPrice: () => void;
     increaseQuantity: (product: CartProduct) => void
     decreaseQuantity: (product: CartProduct) => void
     clearCart: () => void;
+    applyPromoCode: () => void;
 }
 
 export const GlobalContext = createContext<GlobalContextType | null>(null)
@@ -35,6 +37,7 @@ const GlobalProvider: React.FC<{ children: ReactNode }> = ({children}) => {
     const [cart, setCart] = useState<CartProduct[]>([]);
     const [filterParam, setFilterParam] = useState<string>('');
     const [sortParam, setSortParam] = useState<SortType>('')
+    const [totalPrice, setTotalPrice] = useState<number>(0)
     const addToCart = (product: CartProduct) => {
         product.quantity = 1
         if (!cart.some(p => p.id === product.id)) {
@@ -64,7 +67,7 @@ const GlobalProvider: React.FC<{ children: ReactNode }> = ({children}) => {
     }
 
     const countTotalPrice = () => {
-        return Number(cart.reduce((acc, curr) => acc + (curr.price * curr.quantity), 0).toFixed(2))
+        setTotalPrice(Number(cart.reduce((acc, curr) => acc + (curr.price * curr.quantity), 0).toFixed(2)))
     }
 
     const increaseQuantity = (product: CartProduct) => {
@@ -85,8 +88,15 @@ const GlobalProvider: React.FC<{ children: ReactNode }> = ({children}) => {
 
     const clearCart = () => {
         setCart([])
-        console.log(cart)
     }
+
+    const applyPromoCode = () => {
+        setTotalPrice((prev:number) => {
+            const price = prev - (prev * (15 / 100))
+            return Number(price.toFixed(2))
+        })
+    }
+
     return (
         <GlobalContext.Provider value={{
             cart,
@@ -97,10 +107,12 @@ const GlobalProvider: React.FC<{ children: ReactNode }> = ({children}) => {
             filterParam,
             sortParam,
             addSortParam,
+            totalPrice,
             countTotalPrice,
             increaseQuantity,
             decreaseQuantity,
-            clearCart
+            clearCart,
+            applyPromoCode
         }}>
             {children}
         </GlobalContext.Provider>

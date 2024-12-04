@@ -7,13 +7,15 @@ import PaginationButton from "../UI/PaginationButton.tsx";
 import FilterComponent from "../features/filtering/FilterComponent.tsx";
 import {GlobalContext, GlobalContextType} from "../../context/GlobalContext.tsx";
 import SortComponent from "../features/sorting/sortComponent.tsx";
+import Popup from "./popup/Popup.tsx";
 
 const HomePage = () => {
     const {filterParam, sortParam} = useContext(GlobalContext) as GlobalContextType
     const {products, isLoading, error} = useFetchProducts(`https://fakestoreapi.com/products${filterParam ? `/category/${filterParam}` : ""}`)
-    let finalProducts = sortParam
+    const finalProducts = sortParam
         ? [...products].sort((a: Product, b: Product) => (sortParam === "asc" ? a.price - b.price : b.price - a.price))
         : products;
+
     const limit = 8;
     const [page, setPage] = useState<number>(1);
     const startIndex: number = (page - 1) * limit
@@ -47,6 +49,8 @@ const HomePage = () => {
 
     return (
         <HomeContainer>
+            <Popup/>
+
             <ProductsFilter>
                 <SortComponent/>
                 <FilterComponent/>
