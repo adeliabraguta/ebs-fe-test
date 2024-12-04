@@ -13,7 +13,7 @@ export const useFetchProducts = (url: string) => {
                 setProducts([])
                 const response = await fetch(url)
                 const data = await response.json()
-                setProducts(data)
+                setProducts(() => data.map((product: Product) => ({ ...product, quantity: 1 })));
             } catch (error) {
                 setError('Failed to get data')
             } finally {

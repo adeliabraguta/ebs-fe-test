@@ -27,7 +27,7 @@ const Header = () => {
     return (
         <HeaderContainer>
             <div className={"top-elements"}>
-                <Link to={"/cart"}><HiOutlineShoppingBag className={"header-icon"}/></Link>
+                <Link to={"/ebs-fe-test/cart"}><HiOutlineShoppingBag className={"header-icon"}/></Link>
                 <div ref={searchRef}>
                     <SearchComponent isSearchOpen={isSearchOpen} setIsSearchOpen={setIsSearchOpen}/>
                     <HiOutlineSearch onClick={toggleSearch} className={"header-icon search"}/>

@@ -1,19 +1,19 @@
 import React, {createContext, ReactNode, useState} from "react";
-import {CartProduct, Product, SortType} from "../types/productTypes.ts";
+import {Product, SortType} from "../types/productTypes.ts";
 
 export type GlobalContextType = {
-    cart: CartProduct[];
-    addToCart: (product: CartProduct) => void;
-    removeFromCart: (product: CartProduct) => void;
-    checkCart: (product: CartProduct) => boolean;
+    cart: Product[];
+    addToCart: (product: Product) => void;
+    removeFromCart: (product: Product) => void;
+    checkCart: (product: Product) => boolean;
     filterParam: string
     addFilterParam: (param: string) => void;
     sortParam: SortType
     addSortParam: (param: SortType) => void
     totalPrice: number
     countTotalPrice: () => void;
-    increaseQuantity: (product: CartProduct) => void
-    decreaseQuantity: (product: CartProduct) => void
+    increaseQuantity: (product: Product) => void
+    decreaseQuantity: (product: Product) => void
     clearCart: () => void;
     applyPromoCode: () => void;
     searchParam: string
@@ -23,20 +23,20 @@ export type GlobalContextType = {
 export const GlobalContext = createContext<GlobalContextType | null>(null)
 
 const GlobalProvider: React.FC<{ children: ReactNode }> = ({children}) => {
-    const [cart, setCart] = useState<CartProduct[]>([]);
+    const [cart, setCart] = useState<Product[]>([]);
     const [filterParam, setFilterParam] = useState<string>('');
     const [sortParam, setSortParam] = useState<SortType>('')
     const [totalPrice, setTotalPrice] = useState<number>(0)
     const [searchParam, setSearchParam] = useState<string>('')
 
-    const addToCart = (product: CartProduct) => {
+    const addToCart = (product: Product) => {
         product.quantity = 1
         if (!cart.some(p => p.id === product.id)) {
             setCart(prev => [...prev, product])
         }
     }
 
-    const removeFromCart = (product: CartProduct) => {
+    const removeFromCart = (product: Product) => {
         setCart(prev => prev.filter(p => p.id !== product.id))
     }
 
@@ -60,14 +60,14 @@ const GlobalProvider: React.FC<{ children: ReactNode }> = ({children}) => {
         setTotalPrice(Number(cart.reduce((acc, curr) => acc + (curr.price * curr.quantity), 0).toFixed(2)))
     }
 
-    const increaseQuantity = (product: CartProduct) => {
+    const increaseQuantity = (product: Product) => {
         const currentProduct = cart.findIndex(p => p.id === product.id)
         const updatedCart = [...cart]
         updatedCart[currentProduct].quantity += 1
         setCart(updatedCart)
     }
 
-    const decreaseQuantity = (product: CartProduct) => {
+    const decreaseQuantity = (product: Product) => {
         const currentProduct = cart.findIndex(p => p.id === product.id)
         const updatedCart = [...cart]
         if (updatedCart[currentProduct].quantity > 1) {

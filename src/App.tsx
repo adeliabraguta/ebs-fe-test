@@ -12,9 +12,9 @@ function App() {
             <GlobalProvider>
                 <Header/>
                 <Routes>
-                    <Route path={"/"} element={<MainContent/>}>
+                    <Route path={"/ebs-fe-test/"} element={<MainContent/>}>
                         <Route index element={<HomePage/>}/>
-                        <Route path={"/cart"} element={<CartPage/>}/>
+                        <Route path={"cart"} element={<CartPage/>}/>
                     </Route>
                 </Routes>
                 <Footer/>
