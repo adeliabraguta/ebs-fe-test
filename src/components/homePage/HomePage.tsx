@@ -1,27 +1,25 @@
 import {useFetchProducts} from "../../hooks/useFetchProducts.ts";
-import {useContext, useEffect, useState} from "react";
+import {useContext, useState} from "react";
 import ProductComponent from "../productComponent/ProductComponent.tsx";
 import {Product} from "../../types/productTypes.ts";
-import {HomeContainer, PaginationContainer, ProductsContainer} from "./HomePage.styled.tsx";
+import {HomeContainer, PaginationContainer, ProductsContainer, ProductsFilter} from "./HomePage.styled.tsx";
 import PaginationButton from "../UI/PaginationButton.tsx";
 import FilterComponent from "../features/filtering/FilterComponent.tsx";
 import {GlobalContext, GlobalContextType} from "../../context/GlobalContext.tsx";
+import SortComponent from "../features/sorting/sortComponent.tsx";
 
 const HomePage = () => {
-    const {filterParam} = useContext(GlobalContext) as GlobalContextType
-    console.log(filterParam)
-    const {products, isLoading, error, fetchData} = useFetchProducts()
-
-    useEffect(() => {
-        fetchData(`https://fakestoreapi.com/products${filterParam ? `/category/${filterParam}` : ""}`)
-    }, [filterParam])
-
+    const {filterParam, sortParam} = useContext(GlobalContext) as GlobalContextType
+    const {products, isLoading, error} = useFetchProducts(`https://fakestoreapi.com/products${filterParam ? `/category/${filterParam}` : ""}`)
+    let finalProducts = sortParam
+        ? [...products].sort((a: Product, b: Product) => (sortParam === "asc" ? a.price - b.price : b.price - a.price))
+        : products;
     const limit = 8;
     const [page, setPage] = useState<number>(1);
     const startIndex: number = (page - 1) * limit
     const endIndex: number = startIndex + limit
-    const paginatedProducts: Product[] = products.slice(startIndex, endIndex)
-    const totalPagesNr: number = Math.ceil(Number(products.length) / limit)
+    const paginatedProducts: Product[] = finalProducts.slice(startIndex, endIndex)
+    const totalPagesNr: number = Math.ceil(Number(finalProducts.length) / limit)
     const totalPages: number[] = Array.from({length: totalPagesNr}, (_, i) => i + 1) ?? []
 
     const handleScrollToTop = () => {
@@ -49,7 +47,10 @@ const HomePage = () => {
 
     return (
         <HomeContainer>
-            <FilterComponent/>
+            <ProductsFilter>
+                <SortComponent/>
+                <FilterComponent/>
+            </ProductsFilter>
 
             {isLoading && <div>Loading...</div>}
             {error && <div>{error}</div>}

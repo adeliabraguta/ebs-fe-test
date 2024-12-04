@@ -7,9 +7,13 @@ export const HomeContainer = styled.section`
     justify-content: space-between;
     align-items: center;
     min-height: calc(100vh - 115px);
-    div{
-        
-    }
+`
+
+export const ProductsFilter = styled.section`
+    align-self: end;
+    padding-bottom: 32px;
+    display: flex;
+    gap: 24px;
 `
 
 export const ProductsContainer = styled.div`

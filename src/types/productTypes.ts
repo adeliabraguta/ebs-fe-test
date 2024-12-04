@@ -19,3 +19,5 @@ export type ProductState = {
     error: Error;
     fetchData: (url: string) => Promise<void>
 }
+
+export type SortType = 'asc' | 'desc' | '';
