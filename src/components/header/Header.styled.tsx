@@ -17,6 +17,10 @@ export const HeaderContainer = styled.div`
         flex-direction: column;
         gap: 32px;
 
+        a {
+            color: #9E9E9E;
+        }
+
         .header-icon {
             width: 24px;
             height: 24px;

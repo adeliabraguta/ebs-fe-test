@@ -5,12 +5,10 @@ export type Product = {
     description: string;
     category: string;
     image: string;
-    rating: Rating;
-}
-
-export type Rating = {
-    rete: number;
-    count: number
+    rating: {
+        rete: number;
+        count: number
+    }
 }
 
 export type ProductState = {

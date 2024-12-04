@@ -22,7 +22,4 @@ export const SortSelector = styled.select`
     cursor: pointer;
     transition: var(--transition);
     outline: none;
-
-    option {
-    }
 `
