@@ -12,7 +12,7 @@ export const PopupContainer = styled.div`
     display: flex;
     justify-content: center;
     animation: appear 5s ease;
-    animation-delay: 30s;
+    animation-delay: 5s;
     animation-duration: 30s;
 
     span {
