@@ -6,6 +6,7 @@ import {BsCartPlus, BsCartX} from "react-icons/bs";
 import {useGlobalContext} from "../../context/GlobalContext.tsx";
 import {Product} from "../../types/productTypes.ts";
 import ContinueShoppingButton from "../UI/continueShoppingButton/continueShoppingButton.tsx";
+import Loader from "../UI/loader/Loader.tsx";
 
 const ProductPage = () => {
     const {id} = useParams()
@@ -24,7 +25,7 @@ const ProductPage = () => {
 
     return (
         <>
-            {isLoading && <div>Loading...</div>}
+            {isLoading && <Loader/>}
             {error && <div>{error}</div>}
             {product && (
                 <ProductPageContainer>

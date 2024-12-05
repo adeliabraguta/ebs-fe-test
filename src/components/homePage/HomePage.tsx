@@ -10,6 +10,7 @@ import {HiChevronLeft} from "react-icons/hi";
 import ProductComponent from "./productComponent/ProductComponent.tsx";
 import {handleScrollToTop} from "./scrollToTop.ts";
 import PaginationComponent from "./pagination/PaginationComponent.tsx";
+import Loader from "../UI/loader/Loader.tsx";
 
 const HomePage = () => {
     const {filterParam, sortParam, searchParam, addSearchParam} = useGlobalContext()
@@ -49,10 +50,10 @@ const HomePage = () => {
                 <FilterComponent/>
             </ProductsFilter>
 
-            {isLoading && <div>Loading...</div>}
+            {isLoading && <Loader/>}
             {error && <div>{error}</div>}
 
-            {finalProducts.length === 0 &&
+            {!isLoading && finalProducts.length === 0 &&
                 <div className={"no-products"}>
                     <button onClick={handleBackToAllProducts}><HiChevronLeft className={"icon"}/>Back to all products
                     </button>
