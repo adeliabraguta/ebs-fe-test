@@ -5,6 +5,7 @@ import Footer from "./components/footer/Footer.tsx";
 import MainContent from "./components/mainContent/MainContent.tsx";
 import GlobalProvider from "./context/GlobalContext.tsx";
 import CartPage from "./components/cartPage/CartPage.tsx";
+import ProductPage from "./components/productPage/ProductPage.tsx";
 
 function App() {
     return (
@@ -15,6 +16,7 @@ function App() {
                     <Route path={"/ebs-fe-test/"} element={<MainContent/>}>
                         <Route index element={<HomePage/>}/>
                         <Route path={"cart"} element={<CartPage/>}/>
+                        <Route path={"product/:id"} element={<ProductPage/>}/>
                     </Route>
                 </Routes>
                 <Footer/>
