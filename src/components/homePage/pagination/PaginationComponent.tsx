@@ -40,14 +40,14 @@ const PaginationComponent = ({finalProducts, setPage, page, endIndex, limit}: Pr
             {totalPages.map((p, index) => (
                 <PaginationButton isCurrent={p === page} key={index}
                                   onClick={() => {
-                                      handleCurrentPage(page)
+                                      handleCurrentPage(p)
                                   }}>{p}</PaginationButton>
             ))}
 
             <PaginationButton disabled={endIndex >= finalProducts.length}
                               onClick={handleNextPage}>Next</PaginationButton>
         </PaginationContainer>
-    );
-};
+    )
+}
 
 export default PaginationComponent;
