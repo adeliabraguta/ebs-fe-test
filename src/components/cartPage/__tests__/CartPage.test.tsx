@@ -5,6 +5,12 @@ import {GlobalContext} from "../../../context/GlobalContext.tsx";
 import {MemoryRouter} from "react-router-dom";
 import {mockContext} from "./mockContext.ts";
 
+/**
+ Tests works for the version of CartPage that does not have the responsive design implemented.
+ I found out this too late :(
+ */
+
+
 export const mockCart = [
     {
         id: 1,
