@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const FooterContainer = styled.footer`
-    margin-left: 50px;
+    margin-left: 100px;
     padding: 32px 48px;
     background-color: #CFCFCF;
     display: flex;
