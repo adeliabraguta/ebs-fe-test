@@ -1,136 +1,220 @@
-# Welcome to the Front-End Developer Test!
+# Product Catalog Application
 
-This practical test is designed to evaluate your ability to build a functional React.js application using TypeScript. Through this task, we aim to understand your technical skills, approach to problem-solving, and familiarity with front-end development tools and practices.
+## Overview
 
-## Your Task: Build a Product Catalog Application
-You will create a simple **Product Catalog** application where users can browse products, add items to shopping cart, filter items by category and sort items by price. This project will showcase your ability to:
-- Initialize a React project and set up a development environment.
-- Create reusable components with props and define types for them using TypeScript.
-- Manage state effectively using React's useState and Context API.
-- Integrate with APIs to fetch data dynamically.
-- Apply basic CSS for styling the application.
-- Write basic unit tests for React components.
-- Use Git for version control.
+The **Product Catalog Application** is a React.js application built with TypeScript and Styled-Components that allows
+users to browse
+products, add items to a shopping cart, filter items by category,sort items by price adn search items by title. The
+application fetches product data from the [Fake Store API](https://fakestoreapi.com/) and provides a seamless
+shopping experience.
 
-## What We Expect
-1. **Core Features**:
-    - A **Home Page** displaying a list of products with their details (e.g., image, name, price, category). 
-    - A **Shopping Cart Page** listing products added to the "Shopping Cart"
-    - A **Filter and Sort Feature** allowing users to filter products by category and to sort by price.
-    - **Add to Cart** and **Remove from Cart** functionality for each product.
-    - **Total Price** calculation for all products in the cart.
-    - **Clear Cart** button to remove all products from the cart.
-2. **Technical Implementation**:
-    - Fetch product data from a public mock API (https://fakestoreapi.com/). 
-    - Use `useState` for local state and Context API for managing the "Shopping Cart" list. 
-    - Ensure components are reusable and well-structured with appropriate TypeScript types. Example of reusable components: Button, Table, Card.
-    - Implement base layout with header(with navigation), footer, and main content area. It will serve as a template for the Home and Cart pages.
-    - Implement basic routing using React Router for navigation between pages.
-    - Use TypeScript for static typing and defining interfaces.
-3. **Styling**:
-    - Create a user-friendly interface with basic CSS styling (optional: use a CSS framework like TailwindCSS or Styled-Components).
-4. **Testing**:
-    - Write at least one unit test using [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) or Jest.
-5. **Version Control**:
-    - Use Git to manage your code, with a clear and meaningful commit history (tip: use [conventional commit messages](https://www.conventionalcommits.org/en/v1.0.0/) ).
+## Deployment
 
-### Bonus Points
-The bonus points are **optional** features that you can implement to enhance the application and showcase your skills. You can choose one or more of the following:
-- **Responsive Design**: Make the application responsive for different screen sizes(mobile size it's enough). (tip: use media queries).
-- **Error Handling**: Implement error handling for API requests and user interactions. (tip: show error messages to users).
-- **Loading State**: Add loading indicators or skeleton screens to improve the user experience. (tip: use loading state for API requests).
-- **Accessibility**: Ensure the application is accessible and follows best practices for web accessibility. (tip: use semantic HTML elements).
-- **Additional Features**: Add any additional features or enhancements you think would improve the application. (tip: product details modal/page, search functionality).
-- **Documentation**: Provide a README with clear instructions on how to run the application and a brief description of your approach and any important decisions made.
-- **Creativity**: Feel free to add your own creative touch or features to the application.
+The application is deployed on Netlify and can be accessed at:
 
-### Super Bonus Points
-If you want to go the extra mile, you can also:
-- **Deployment**: Deploy the application to a hosting service like Netlify, Vercel, or GitHub Pages.
-- **Testing**: Write additional unit tests to ensure the application works as expected.
-- **Pagination**: Implement pagination for the product list. (tip: use query parameters for pagination).
-- **Animations**: Add animations or transitions to enhance the user experience. (tip: use CSS transitions).
-- **Performance Optimization**: Optimize the application for performance (e.g., lazy loading, code splitting).
+[https://adeliabraguta.github.io/ebs-fe-test/](https://adeliabraguta.github.io/ebs-fe-test/)
 
-## Tools
-- **React.js**: Use React.js to build the application.
-- **TypeScript**: Use TypeScript for static typing and defining interfaces.
-- **API**: Use `fetch` to fetch product data from the [Fake Store API](https://fakestoreapi.com/).
-- **React Router**: Use React Router for navigation between pages.
-- **React Context**: Use React Context API for managing global state (e.g., shopping cart).
+## Table of Contents
 
-> **TIP**: To write clean, maintainable code following best practices and naming conventions, take a look at the [Clean Code JavaScript](https://github.com/ryanmcdermott/clean-code-javascript) and [TypeScript Style Guide](https://basarat.gitbook.io/typescript/styleguide).
+- [Deployment](#deployment)
+- [Features](#features)
+   - [Core Features](#core-features)
+   - [Technical Implementation](#technical-implementation)
+   - [Styling](#styling)
+   - [Testing](#testing)
+   - [Version Control](#version-control)
+- [Bonus Features](#bonus-features)
+- [Installation](#installation)
+- [Usage](#usage)
+   - [Home Page](#home-page)
+   - [Shopping Cart Page](#shopping-cart-page)
+- [Testing](#testing)
+- [Project Structure](#project-structure)
+- [Contact](#contact)
 
+## Features
 
-## Submission
-- **Delivery**: Share the GitHub repository link with us via email or any other preferred method.
-- **Review**: We will review your submission and provide feedback within 7 days of receiving the link.
-- **Questions**: If you have any questions or need clarification, feel free to reach out to us.
-- **Good Luck!** We look forward to seeing your work and learning more about your skills and approach to front-end development.
+### Core Features
 
+- **Home Page**: Displays a list of products with their images, their names, costs, and category.
+- **Shopping Cart Page**: Displays products in the shopping cart along with a feature to add and remove quantities.
+- **Filter and Sort**: A filter allows to filter products by category while the sort options enable users to sort products according to price from low to high or vise versa.
+- **Add to Cart**: Users can add products to the shopping cart directly from the home page.
+- **Remove from Cart**: It is possible to delete particular products from the shopping cart.
+- **Total Price Calculation**: Calculate the total price as the sum of quantity of products in the cart.
+- **Clear Cart**: Adds a button which will empty the entire shopping cart.
 
-## Evaluation Criteria
-We will assess your work based on:
-- **Functionality**: Correct implementation of the features listed.
-- **API Integration**: Fetching data from the API and handling responses.
-- **State Management**: Effective use of `useState` and `Context` for managing state.
-- **Code Quality**: Clean, readable, and maintainable code with well-typed components.
-- **Testing**: Basic tests to validate functionality or rendering.
-- **Git Usage**: Clear and incremental commits reflecting your progress.
-- **Styling**: A visually appealing and functional user interface.
+### Technical Implementation
 
-## Getting started
-- Clone this repository and run `npm install` to install the dependencies.
-- Run `npm run dev` to start the development server.
+- **API Integration**: Fetches product data from the [Fake Store API](https://fakestoreapi.com/) using the Fetch API.
+- **State Management**: Utilizes React's `useState` for local state and the Context API for global state management of the shopping cart.
+- **Reusable Components**: Implements reusable components like `Button`, `Loader` etc. with all with well-defined TypeScript types.
+- **Routing**: Uses React Router (`react-router-dom`) for client-side routing between the Home, Product Page and Shopping Cart pages.
+- **Layout**: Features a consistent layout with a header (including navigation), footer, and main content area.
+- **TypeScript**: All components and utilities are strictly typed using TypeScript for better maintainability and error checking.
 
-## To Do:
-### Setup the Project:
-- [ ] Clone the project.
-- [ ] Install the dependencies using `npm install`.
-- [ ] Start the development server using `npm run dev`.
-- [ ] Create the base layout for the application (header, footer, main content).
-- [ ] Set up React Router for navigation between pages. (`npm install react-router-dom`)
-- [ ] Create a global context for managing the shopping cart state.
-- [ ] Implement basic routing for the Home Page and Shopping Cart Page. (`/`, `/cart`)
-- [ ] Add basic styling to the application using CSS or a CSS framework. 
+### Styling
 
-### Create the Home Page:
-- [ ] Create a table or grid of cards to display the list of products.
-- [ ] Fetch the product data from the API (https://fakestoreapi.com/products).
-- [ ] Display the product details (image, name, price, category).
-- [ ] Add a button to add the product to the shopping cart.
-- [ ] Add a button to remove the product from the shopping cart.
-- [ ] Implement filtering by category and sorting by price (asc/desc).
-### Create the Shopping Cart Page:
-- [ ] Display the list of products added to the shopping cart.
-- [ ] Allow users to change the quantity of products in the cart.
-- [ ] Allow users to remove products from the cart.
-- [ ] Show the total price for all products in the cart.
-- [ ] Add a button to clear all products from the cart.
+- **User-Friendly Interface**: Styled with CSS for a clean and intuitive user experience. Styled-Components was used.
+- **Responsive Design**: Implements responsive design principles to ensure usability on mobile devices.
 
-### Bonus:
-- [ ] Anything you want to add to impress us! Consider the bonus points mentioned above.
+### Testing
 
-### Examples:
+- **Unit Tests**: Includes basic unit tests for React components using Vitest and React Testing Library.
 
-**List of products example**:
-| Name                        | Category ^ | Price ^ | Actions        |
-|-----------------------------|------------|---------|----------------|
-| Solid Gold Petite Micropave | jewelery   | $168    | (-) / (+) |
+### Version Control
 
-**List of added products in shopping cart example**:
-| Name                        | Category ^ | Price ^ | Quantity | Actions            |
-|-----------------------------|------------|---------|----------|--------------------|
-| Solid Gold Petite Micropave | jewelery   | $168    | 2        | (-) / (+) / Delete |
+- **Git**: Managed with Git, featuring clear and meaningful commit messages following the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) specification.
 
+## Bonus Features
 
-### Resources:
-- [React Documentation](https://react.dev/learn)
-- [TypeScript Documentation](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html)
-- [React Router Documentation](https://reactrouter.com/en/main/start/tutorial)
-- [React Context API](https://react.dev/learn/passing-data-deeply-with-context)
-- [Fake Store API](https://fakestoreapi.com/)
-- [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
-- [Jest Testing Framework](https://jestjs.io/docs/getting-started)
-- [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
-- [Clean Code JavaScript](https://github.com/ryanmcdermott/clean-code-javascript)
+- **Error Handling**: Implements error handling for API requests and user interactions, displaying user-friendly error messages.
+- **Loading State**: Adds loading indicator to enhance user experience during data fetching.
+- **Accessibility**: Ensures the application follows web accessibility best practices by using semantic HTML elements.
+- **Additional Features**:
+   - **Product Details Page**: Allows users to view detailed information about a product in a modal separated page.
+   - **Search Functionality**: Enables users to search for products by title.
+   - **Discount Application**: Enables users to introduce a PromoCode to get a discount.
+   - **Popup with discount**: A mascot popup appears after a certain amount of tine and gives a 15% discount with
+     promocode "PasS"
+- **Documentation**: Provides this comprehensive README with setup instructions and insights into the development approach.
+- **Creativity**: Incorporates custom styling and animations for an engaging user experience.
+
+## Installation
+
+1. **Clone the Repository**
+
+   ```bash
+   git clone https://github.com/yourusername/product-catalog-app.git
+   cd product-catalog-app
+   ```
+
+2. **Install Dependencies**
+
+   ```bash
+   npm install
+   ```
+
+3. **Start the Development Server**
+
+   ```bash
+   npm run dev
+   ```
+
+## Usage
+
+### Home Page
+
+- **Browse Products**: Scroll through the list of products displayed as cards.
+- **Filter by Category**: Use the dropdown menu to filter products by category.
+- **Sort by Price**: Click on the "Sort by price" button to sort products in ascending or descending order.
+- **Search Products**: Enter keywords in the search bar to find specific products by title.
+- **View Product Details**: Click on a product title to redirect on the specific page with detailed information.
+- **Add to Cart**: Click the "Cart" button on a product card to add it to your shopping cart.
+
+### Shopping Cart Page
+
+- **View Cart Items**: See all products you've added to your cart.
+- **Adjust Quantity**: Use the "+" and "−" buttons to increase or decrease the quantity of each item.
+- **Remove Items**: Click the "X" button to remove a specific product from the cart.
+- **Clear Cart**: Click the "Clear Cart" button to remove all items.
+- **Total Price**: View the total price of all items at the bottom of the cart with discount if it is applied.
+
+## Testing
+
+To run the unit tests:
+
+```bash
+npm run test
+```
+
+## Project Structure
+
+```
+product-catalog-app/
+│
+├── src/
+│   ├── components/
+│   │   ├── cartPage/
+│   │   │   ├── __tests__/
+│   │   │   │   └── CartPage.test.tsx
+│   │   │   ├── CartPage.styled.tsx
+│   │   │   └── CartPage.tsx
+│   │   ├── ProductComponent/
+│   │   │   ├── ProductComponentCart.styled.tsx
+│   │   │   ├── ProductComponentCart.tsx
+│   │   │   └── CartPage.tsx
+│   │   ├── footer/
+│   │   │   ├── Footer.styled.ts
+│   │   │   └── Footer.tsx
+│   │   ├── header/
+│   │   │   ├── Header.styled.tsx
+│   │   │   └── Header.tsx
+│   │   ├── homePage/
+│   │   │   ├── pagination/
+│   │   │   │   ├── PaginationComponent.tsx
+│   │   │   │   └── PaginationComponent.styled.tsx
+│   │   │   ├── Popup.styled.tsx
+│   │   │   └── Popup.tsx
+│   │   ├── mainContent/
+│   │   │   ├── MainContent.styled.tsx
+│   │   │   └── MainContent.tsx
+│   │   ├── productPage/
+│   │   │   ├── ProductPage.styled.tsx
+│   │   │   └── ProductPage.tsx
+│   │   ├── UI/
+│   │   │   ├── continueShoppingButton/
+│   │   │   │   ├── continueShoppingButton.styled.tsx
+│   │   │   │   └── continueShoppingButton.tsx
+│   │   │   ├── loader/
+│   │   │   │   ├── Loader.styled.tsx
+│   │   │   │   └── Loader.tsx
+│   │   │   └── paginationButton/
+│   │   │       ├── PaginationButton.styled.tsx
+│   │   │       └── PaginationButton.tsx
+│   │   └── ...
+│   ├── features/
+│   │   ├── filtering/
+│   │   │   ├── filterPopup/
+│   │   │   │   ├── FilterPopup.styled.tsx
+│   │   │   │   └── FilterPopup.tsx
+│   │   │   ├── FilterComponent.styled.tsx
+│   │   │   └── FilterComponent.tsx
+│   │   ├── searching/
+│   │   │   ├── SearchComponent.styled.tsx
+│   │   │   └── SearchComponent.tsx
+│   │   └── sorting/
+│   │       ├── SortComponent.styled.tsx
+│   │       └── SortComponent.tsx
+│   ├── context/
+│   │   └── GlobalContext.tsx
+│   ├── hooks/
+│   │   ├── useFetchCategories.ts
+│   │   ├── useFetchProduct.ts
+│   │   └── useFetchProducts.ts
+│   ├── types/
+│   │   └── productTypes.ts
+│   ├── App.tsx
+│   ├── index.css
+│   ├── main.tsx
+│   └── scrollToTop.tsx
+├── __tests__/
+│   └── ProductCard.test.tsx
+├── public/
+│   └── index.html
+├── package.json
+├── tsconfig.json
+├── vite.config.ts
+├── jest.config.js
+└── README.md
+```
+
+## Contact
+
+- **Author**: Braguta Adelia
+- **Email**: [adeliabraguta@gmail.com](mailto:adeliabraguta@gmail.com)
+- **Linkedin**: [Braguta Adelia](https://www.linkedin.com/in/adelia-bragu%C8%9Ba-251a2422b/)
+
+---
+
+Feel free to reach out for any questions or suggestions!
