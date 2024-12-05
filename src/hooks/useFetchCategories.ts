@@ -4,6 +4,7 @@ export const useFetchCategories = (url: string) => {
     const [categories, setCategories] = useState<string[]>([])
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const [error, setError] = useState<string>('')
+
     useEffect(() => {
         (async () => {
             try {
@@ -21,5 +22,5 @@ export const useFetchCategories = (url: string) => {
         })()
     }, [])
 
-    return {categories, isLoading, error};
+    return {categories, isLoading, error}
 };

@@ -32,9 +32,6 @@ export const HeaderContainer = styled.div`
                 color: #fff;
             }
         }
-        .search{
-            
-        }
     }
 
     h2 {

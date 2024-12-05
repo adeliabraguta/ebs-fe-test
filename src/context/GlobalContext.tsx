@@ -2,28 +2,28 @@ import React, {createContext, ReactNode, useContext, useState} from "react";
 import {Product, SortType} from "../types/productTypes.ts";
 
 export type GlobalContextType = {
-    cart: Product[];
-    addToCart: (product: Product) => void;
-    removeFromCart: (product: Product) => void;
-    checkCart: (product: Product) => boolean;
+    cart: Product[]
+    addToCart: (product: Product) => void
+    removeFromCart: (product: Product) => void
+    checkCart: (product: Product) => boolean
     filterParam: string
-    addFilterParam: (param: string) => void;
+    addFilterParam: (param: string) => void
     sortParam: SortType
     addSortParam: (param: SortType) => void
     totalPrice: number
-    countTotalPrice: () => void;
+    countTotalPrice: () => void
     increaseQuantity: (product: Product) => void
     decreaseQuantity: (product: Product) => void
-    clearCart: () => void;
-    applyPromoCode: () => void;
+    clearCart: () => void
+    applyPromoCode: () => void
     searchParam: string
-    addSearchParam: (param: string) => void;
+    addSearchParam: (param: string) => void
 }
 
 export const GlobalContext = createContext<GlobalContextType | null>(null)
 
 const GlobalProvider: React.FC<{ children: ReactNode }> = ({children}) => {
-    const [cart, setCart] = useState<Product[]>([]);
+    const [cart, setCart] = useState<Product[]>([])
     const [filterParam, setFilterParam] = useState<string>('');
     const [sortParam, setSortParam] = useState<SortType>('')
     const [totalPrice, setTotalPrice] = useState<number>(0)
@@ -137,10 +137,10 @@ export const useGlobalContext = () => {
             clearCart: () => {},
             applyPromoCode: () => {},
             searchParam: '',
-            addSearchParam: () => {},
-        };
+            addSearchParam: () => {}
+        }
     }
 
-    return context;
-};
+    return context
+}
 export default GlobalProvider;

@@ -13,7 +13,7 @@ const PaginationButton: React.FC<ChildrenType> = ({children, disabled, onClick, 
         <Button $isCurrent={isCurrent} disabled={disabled} onClick={onClick}>
             {children}
         </Button>
-    );
-};
+    )
+}
 
 export default PaginationButton;

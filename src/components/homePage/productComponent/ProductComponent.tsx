@@ -33,9 +33,8 @@ const ProductComponent = ({product}: { product: Product }) => {
                     <CartButton $isInCart={isInCart} onClick={() => addProductToCart(product)}><BsCartPlus className={"icon"}/></CartButton>
                 }
             </div>
-
         </ProductContainer>
-    );
-};
+    )
+}
 
 export default ProductComponent;

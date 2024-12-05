@@ -7,7 +7,9 @@ export const HomeContainer = styled.section`
     justify-content: space-between;
     align-items: center;
     min-height: calc(100vh - 115px);
+    
     .no-products{
+        
         button{
             background-color: transparent;
             border: none;
@@ -19,14 +21,17 @@ export const HomeContainer = styled.section`
             align-items: center;
             cursor: pointer;
             transition: var(--transition);
+            
             &:hover{
                 color: #DE911D;
             }
+            
             .icon{
                 font-size: 20px;
             }
         }
     }
+    
     @media screen and (max-width: 1100px) {
         gap:12px;
     }
@@ -45,6 +50,7 @@ export const ProductsContainer = styled.div`
     grid-template-rows: repeat(2, min-content);
     column-gap: 48px;
     row-gap: 64px;
+    
     @media screen and (max-width: 1100px) {
         grid-template-columns: repeat(1, 1fr);
         grid-template-rows: repeat(4, min-content);

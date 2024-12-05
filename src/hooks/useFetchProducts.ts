@@ -5,6 +5,7 @@ export const useFetchProducts = (url: string) => {
     const [products, setProducts] = useState<Product[]>([])
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const [error, setError] = useState<string>('')
+
     useEffect(() => {
         (async () => {
             try {
@@ -22,5 +23,5 @@ export const useFetchProducts = (url: string) => {
         })()
     },[url])
 
-    return {products, isLoading, error};
+    return {products, isLoading, error}
 };

@@ -1,12 +1,13 @@
 import styled from "styled-components";
 
-export const FooterContainer = styled.div`
+export const FooterContainer = styled.footer`
     margin-left: 50px;
     padding: 32px 48px;
     background-color: #CFCFCF;
     display: flex;
     align-items: center;
     gap: 48px;
+    
     @media screen and (max-width: 1100px) {
         padding: 32px;
         flex-wrap: wrap;
@@ -16,7 +17,6 @@ export const FooterContainer = styled.div`
 
 export const InfoContainer = styled.div`
     div {
-
         display: flex;
         gap: 4px;
 

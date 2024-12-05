@@ -9,13 +9,12 @@ import SortComponent from "../features/sorting/SortComponent.tsx";
 import {HiChevronLeft} from "react-icons/hi";
 import ProductComponent from "./productComponent/ProductComponent.tsx";
 import {handleScrollToTop} from "./scrollToTop.ts";
-import PaginationButton from "../UI/paginationButton/PaginationButton.tsx";
-import {PaginationContainer} from "./pagination/PaginatitonComponent.styled.tsx";
+import PaginationComponent from "./pagination/PaginationComponent.tsx";
 
 const HomePage = () => {
     const {filterParam, sortParam, searchParam, addSearchParam} = useGlobalContext()
-    const [page, setPage] = useState<number>(1);
-    const limit = 8;
+    const [page, setPage] = useState<number>(1)
+    const limit = 8
     const startIndex: number = (page - 1) * limit
     const endIndex: number = startIndex + limit
 
@@ -42,28 +41,9 @@ const HomePage = () => {
         addSearchParam('')
     }
 
-    const totalPagesNr: number = Math.ceil(Number(finalProducts.length) / limit)
-    const totalPages: number[] = Array.from({length: totalPagesNr}, (_, i) => i + 1) ?? []
-
-    const handleNextPage = () => {
-        setPage((prev) => prev + 1)
-        handleScrollToTop()
-    }
-
-    const handleBackPage = () => {
-        setPage((prev) => prev - 1)
-        handleScrollToTop()
-    }
-
-    const handleCurrentPage = (p: number) => {
-        setPage(p)
-        handleScrollToTop()
-    }
-
     return (
         <HomeContainer>
             <Popup/>
-
             <ProductsFilter>
                 <SortComponent/>
                 <FilterComponent/>
@@ -71,37 +51,27 @@ const HomePage = () => {
 
             {isLoading && <div>Loading...</div>}
             {error && <div>{error}</div>}
+
             {finalProducts.length === 0 &&
                 <div className={"no-products"}>
                     <button onClick={handleBackToAllProducts}><HiChevronLeft className={"icon"}/>Back to all products
                     </button>
                     <p>No products found</p>
-                </div>}
+                </div>
+            }
 
             <ProductsContainer>
                 {paginatedProducts.map((product: Product) => (
                     <ProductComponent key={product.id} product={product}/>
                 ))}
-
             </ProductsContainer>
 
             {products.length > 0 && (
-                <PaginationContainer>
-
-                    <PaginationButton disabled={page === 1}
-                                      onClick={handleBackPage}>Back</PaginationButton>
-
-                    {totalPages.map((p, index) => (
-                        <PaginationButton isCurrent={p === page} key={index}
-                                          onClick={() => handleCurrentPage(p)}>{p}</PaginationButton>
-                    ))}
-
-                    <PaginationButton disabled={endIndex >= finalProducts.length}
-                                      onClick={handleNextPage}>Next</PaginationButton>
-                </PaginationContainer>
+                <PaginationComponent finalProducts={finalProducts} page={page} setPage={setPage} endIndex={endIndex}
+                                     limit={limit}/>
             )}
         </HomeContainer>
-    );
-};
+    )
+}
 
 export default HomePage;

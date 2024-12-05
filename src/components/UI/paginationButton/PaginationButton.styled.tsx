@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 type Props = {
     $isCurrent?: boolean
-};
+}
 
 export const Button = styled.button<Props>`
     min-width: 80px;

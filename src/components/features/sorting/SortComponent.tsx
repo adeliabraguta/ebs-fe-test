@@ -23,7 +23,7 @@ const SortComponent = () => {
                 <option value="desc">Price (Desc)</option>
             </SortSelector>
         </SortContainer>
-    );
-};
+    )
+}
 
 export default SortComponent;

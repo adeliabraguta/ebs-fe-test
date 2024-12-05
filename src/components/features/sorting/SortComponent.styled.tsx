@@ -6,6 +6,7 @@ export const SortContainer = styled.div`
     align-items: center;
     gap: 4px;
     cursor: pointer;
+    
     .icon{
         color: #222;
         width: 18px;

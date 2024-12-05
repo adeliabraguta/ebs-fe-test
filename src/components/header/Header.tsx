@@ -5,24 +5,25 @@ import SearchComponent from "../features/searching/SearchComponent.tsx";
 import {useEffect, useRef, useState} from "react";
 
 const Header = () => {
-    const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
+    const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false)
     const searchRef = useRef<HTMLDivElement | null>(null)
-    const toggleSearch = () => {
-        setIsSearchOpen(!isSearchOpen)
-    }
 
     useEffect(() => {
         const handler = (event: FocusEvent) => {
             if (!searchRef.current?.contains(event.target as Node)) {
-                setIsSearchOpen(false);
+                setIsSearchOpen(false)
             }
         };
-        document.addEventListener("mousedown", handler);
+        document.addEventListener("mousedown", handler)
 
         return () => {
-            document.removeEventListener("mousedown", handler);
-        };
-    }, [isSearchOpen]);
+            document.removeEventListener("mousedown", handler)
+        }
+    }, [isSearchOpen])
+
+    const toggleSearch = () => {
+        setIsSearchOpen(!isSearchOpen)
+    }
 
     return (
         <HeaderContainer>
@@ -30,12 +31,12 @@ const Header = () => {
                 <Link to={"/ebs-fe-test/cart"}><HiOutlineShoppingBag className={"header-icon"}/></Link>
                 <div ref={searchRef}>
                     <SearchComponent isSearchOpen={isSearchOpen} setIsSearchOpen={setIsSearchOpen}/>
-                    <HiOutlineSearch onClick={toggleSearch} className={"header-icon search"}/>
+                    <HiOutlineSearch onClick={toggleSearch} className={"header-icon"}/>
                 </div>
             </div>
             <h2>C</h2>
         </HeaderContainer>
-    );
-};
+    )
+}
 
 export default Header

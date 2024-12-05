@@ -2,6 +2,7 @@ import {FooterContainer, IconsContainer, InfoContainer} from "./Footer.styled.ts
 import {FaGithub, FaLinkedinIn} from "react-icons/fa";
 
 const Footer = () => {
+
     return (
         <FooterContainer>
             <InfoContainer>
@@ -20,7 +21,7 @@ const Footer = () => {
                 </a>
             </IconsContainer>
         </FooterContainer>
-    );
-};
+    )
+}
 
 export default Footer;

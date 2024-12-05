@@ -73,17 +73,21 @@ export const ProductCart = styled.div`
         padding-bottom: 32px;
         border-bottom: 2px solid #E1E1E1;
         gap: 12px;
+        
         .info-container{
             display: grid;
             gap: 12px;
+            
             img{
                 justify-self: center;
             }
         }
+        
         .all-interactions{
             display: flex;
             justify-content: space-between;
         }
+        
         @media screen and (min-width: 1100px) {
             display: none;
         }

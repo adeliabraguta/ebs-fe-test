@@ -30,11 +30,13 @@ export const SearchContainer = styled.form<Props>`
         border: none;
         border-right: 2px solid #CFCFCF;
         color: #222;
+        
         &:focus{
             outline: none;
             border-color: #CB6E17;
         }
     }
+    
     &:focus-within{
         border-color: #CB6E17 ;
     }
@@ -51,6 +53,7 @@ export const SearchContainer = styled.form<Props>`
             color: #CB6E17;
         }
     }
+    
     @media screen and (max-width: 1100px) {
         left: 50px;
     }

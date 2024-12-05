@@ -51,9 +51,8 @@ const ProductComponentCart = ({product}: { product: Product }) => {
                     <span onClick={() => removeFromCart(product)} className={"remove-product"}><IoCloseOutline/></span>
                 </div>
             </div>
-
         </ProductCart>
-    );
-};
+    )
+}
 
 export default ProductComponentCart;

@@ -6,7 +6,7 @@ const MainContent = () => {
         <ContentContainer>
             <Outlet/>
         </ContentContainer>
-    );
-};
+    )
+}
 
 export default MainContent;
