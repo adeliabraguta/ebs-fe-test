@@ -27,6 +27,9 @@ export const HomeContainer = styled.section`
             }
         }
     }
+    @media screen and (max-width: 1100px) {
+        gap:12px;
+    }
 `
 
 export const ProductsFilter = styled.section`
@@ -42,12 +45,11 @@ export const ProductsContainer = styled.div`
     grid-template-rows: repeat(2, min-content);
     column-gap: 48px;
     row-gap: 64px;
-`
-
-export const PaginationContainer = styled.section`
-    padding-top: 64px;
-    display: flex;
-    gap: 32px;
-    justify-self: center;
+    @media screen and (max-width: 1100px) {
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: repeat(4, min-content);
+        column-gap: 48px;
+        row-gap: 64px;  
+    }
 `
 

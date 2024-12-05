@@ -42,4 +42,9 @@ export const HeaderContainer = styled.div`
         font-size: 40px;
         color: #7E7E7E;
     }
+    
+    @media screen and (max-width: 1100px) {
+        background-color: #E1E1E1;
+        width: 50px;
+    }
 `

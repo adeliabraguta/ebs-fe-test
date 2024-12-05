@@ -5,7 +5,8 @@ type Props = {
 };
 
 export const Button = styled.button<Props>`
-    min-width: 50px;
+    min-width: 80px;
+    height: min-content;
     border: none;
     background-color: transparent;
     color: ${({$isCurrent }) => ($isCurrent ? "#CB6E17" : "#626262")} ;

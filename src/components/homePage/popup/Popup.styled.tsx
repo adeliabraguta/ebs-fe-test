@@ -19,7 +19,7 @@ export const PopupContainer = styled.div`
         color: #B44D12;
         font-weight: 500;
     }
-    
+
     @keyframes appear {
         0% {
             right: -500px;
@@ -31,6 +31,34 @@ export const PopupContainer = styled.div`
 
         90% {
             right: -70px;
+        }
+
+        100% {
+            right: -500px;
+        }
+    }
+
+    @media screen and (max-width: 1100px) {
+        width: 450px;
+        right: -700px;
+        bottom: 60px;
+        animation: appearMobile 5s ease;
+        transform: rotate(0deg);
+        animation-delay: 5s;
+        animation-duration: 30s;
+    }
+
+    @keyframes appearMobile {
+        0% {
+            right: -500px;
+        }
+
+        10% {
+            right: -40px;
+        }
+
+        90% {
+            right: -40px;
         }
 
         100% {

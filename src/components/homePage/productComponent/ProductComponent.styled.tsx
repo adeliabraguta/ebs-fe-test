@@ -8,6 +8,9 @@ export const ProductContainer = styled.div`
     display: grid;
     grid-template-rows: 1fr max-content;
     position: relative;
+    @media screen and (max-width: 1100px) {
+        gap:8px;
+    }
     div:first-of-type {
         display: flex;
         flex-direction: column;
@@ -18,6 +21,16 @@ export const ProductContainer = styled.div`
             object-fit: contain;
             align-self: center;
             justify-self: center;
+            @media screen and (max-width: 1100px) {
+                height: 150px;
+                width: 150px;
+            }
+        }
+        
+        h3{
+            @media screen and (max-width: 1100px) {
+                font-size: 16px;
+            } 
         }
 
         p {
@@ -35,6 +48,7 @@ export const ProductContainer = styled.div`
             color: #DE911D;
         }
     }
+
 `
 
 export const CartButton = styled.button<Props>`

@@ -60,4 +60,24 @@ export const ProductPageContainer = styled.div`
             height: 32px;
         }
     }
+
+    @media screen and (max-width: 1100px) {
+        padding: 0;
+        grid-template-columns: 1fr;
+        gap: 8px;
+        
+        img {
+            height: 250px;
+            width: 150px;
+        }
+
+        .product-title {
+            padding-bottom: 0;
+            gap: 32px;
+        }
+
+        .cart {
+            padding-top: 24px;
+        }
+    }
 `

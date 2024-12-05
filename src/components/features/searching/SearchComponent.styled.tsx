@@ -51,4 +51,7 @@ export const SearchContainer = styled.form<Props>`
             color: #CB6E17;
         }
     }
+    @media screen and (max-width: 1100px) {
+        left: 50px;
+    }
 `

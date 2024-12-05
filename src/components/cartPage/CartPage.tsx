@@ -1,8 +1,8 @@
-import { useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import {useGlobalContext} from "../../context/GlobalContext.tsx";
-import ProductComponentCart from "./itemComponent/ProductComponentCart.tsx";
+import ProductComponentCart from "./ProductComponent/ProductComponentCart.tsx";
 import {CartContainer, CartPageContainer} from "./CartPage.styled.tsx";
-import PaginationButton from "../UI/PaginationButton.tsx";
+import PaginationButton from "../UI/paginationButton/PaginationButton.tsx";
 import ContinueShoppingButton from "../UI/continueShoppingButton/continueShoppingButton.tsx";
 
 enum PromoCode {
@@ -24,7 +24,7 @@ const CartPage = () => {
 
     useEffect(() => {
         countTotalPrice()
-    }, [promoCode, increaseQuantity,decreaseQuantity])
+    }, [promoCode, increaseQuantity, decreaseQuantity])
 
     const handlePromoCode = () => {
         if (promoCode === PromoCode.PERCENTAGE15) {
@@ -44,15 +44,35 @@ const CartPage = () => {
             <div className={"cart-options"}>
                 <ContinueShoppingButton/>
                 {cart.length > 0 &&
-                    (<div>
-                        <div className={"promocode-container"}>
-                            <input placeholder={"Add PromoCode"} value={promoCode}
-                                   onChange={(e) => setPromoCode(e.target.value)}/>
-                            <button onClick={handlePromoCode}>Apply</button>
+                    (
+                        <div>
+                            <div className={"promocode-container"}>
+                                <input placeholder={"Add PromoCode"} value={promoCode}
+                                       onChange={(e) => setPromoCode(e.target.value)}/>
+                                <button onClick={handlePromoCode}>Apply</button>
+                            </div>
+                            <p><span>Total: </span>$ {totalPrice}</p>
+                            <PaginationButton onClick={() => clearCart()}>Clear cart</PaginationButton>
                         </div>
-                        <p><span>Total: </span>$ {totalPrice}</p>
-                        <PaginationButton onClick={() => clearCart()}>Clear cart</PaginationButton>
-                    </div>)
+                    )
+                }
+            </div>
+            <div className={"cart-options_mobile"}>
+                <ContinueShoppingButton/>
+                {cart.length > 0 &&
+                    (
+                        <div>
+                            <div className={"promocode-container"}>
+                                <input placeholder={"Add PromoCode"} value={promoCode}
+                                       onChange={(e) => setPromoCode(e.target.value)}/>
+                                <button onClick={handlePromoCode}>Apply</button>
+                            </div>
+                            <div className={"mobile-price"}>
+                                <p><span>Total: </span>$ {totalPrice}</p>
+                                <PaginationButton onClick={() => clearCart()}>Clear cart</PaginationButton>
+                            </div>
+                        </div>
+                    )
                 }
             </div>
             {cart.length === 0 && <p>Your cart is empty!</p>}

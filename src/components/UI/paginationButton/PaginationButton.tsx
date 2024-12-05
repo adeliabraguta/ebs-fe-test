@@ -5,12 +5,12 @@ type ChildrenType = {
     children: React.ReactNode;
     disabled?: boolean;
     onClick?: React.MouseEventHandler<HTMLButtonElement>;
-    $isCurrent?: boolean
+    isCurrent?: boolean
 }
 
-const PaginationButton: React.FC<ChildrenType> = ({children, disabled, onClick}) => {
+const PaginationButton: React.FC<ChildrenType> = ({children, disabled, onClick, isCurrent}) => {
     return (
-        <Button disabled={disabled} onClick={onClick}>
+        <Button $isCurrent={isCurrent} disabled={disabled} onClick={onClick}>
             {children}
         </Button>
     );

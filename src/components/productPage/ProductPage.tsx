@@ -11,7 +11,7 @@ const ProductPage = () => {
     const {id} = useParams()
     const {product, isLoading, error} = useFetchProduct(`https://fakestoreapi.com/products/${id}`)
     const {checkCart, addToCart, removeFromCart} = useGlobalContext()
-    console.log("id", id)
+
     const addProductToCart = (product: Product) => {
         addToCart(product)
     }
