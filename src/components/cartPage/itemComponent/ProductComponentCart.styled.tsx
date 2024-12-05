@@ -14,19 +14,8 @@ export const ProductCart = styled.div`
     .info-container{
         display: flex;
         gap: 32px;
-        h3{
-            cursor: pointer;
-            font-size: 18px;
-            color: #515151;
-            justify-self: start;
-            align-self: start;
-            transition: var(--transition);
-
-            &:hover {
-                color: #222;
-            }
-        }
     }
+    
     .quantity{
         display: flex;
         gap: 8px;

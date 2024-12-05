@@ -4,15 +4,6 @@ export const CartPageContainer = styled.div`
     h2{
         padding-bottom: 48px;
     }
-    a{
-        color: #222;
-        text-decoration: none;
-        transition: var(--transition);
-        &:hover{
-                color: #CB6E17;
-                border-color: #CB6E17;
-        }
-    }
     p{
         text-align: center;
         padding: 48px;

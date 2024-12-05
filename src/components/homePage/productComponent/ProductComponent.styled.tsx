@@ -20,19 +20,6 @@ export const ProductContainer = styled.div`
             justify-self: center;
         }
 
-        h3 {
-            cursor: pointer;
-            font-size: 18px;
-            color: #515151;
-            justify-self: start;
-            align-self: start;
-            transition: var(--transition);
-
-            &:hover {
-                color: #222;
-            }
-        }
-
         p {
             color: #7E7E7E;
             padding-top: 24px;

@@ -1,7 +1,8 @@
-import {Product} from "../../types/productTypes.ts";
+import {Product} from "../../../types/productTypes.ts";
 import {CartButton, ProductContainer} from "./ProductComponent.styled.tsx";
 import {BsCartPlus, BsCartX} from "react-icons/bs";
-import {useGlobalContext} from "../../context/GlobalContext.tsx";
+import {useGlobalContext} from "../../../context/GlobalContext.tsx";
+import {Link} from "react-router-dom";
 
 const ProductComponent = ({product}: { product: Product }) => {
     const {addToCart, removeFromCart, checkCart} = useGlobalContext()
@@ -22,7 +23,7 @@ const ProductComponent = ({product}: { product: Product }) => {
                 <img src={product.image} alt={product.title}/>
                 <div>
                     <p>{product.category}</p>
-                    <h3>{product.title}</h3>
+                    <Link to={`/ebs-fe-test/product/${product.id}`}><h3>{product.title}</h3></Link>
                 </div>
             </div>
             <div>

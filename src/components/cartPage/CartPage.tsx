@@ -3,8 +3,7 @@ import {useGlobalContext} from "../../context/GlobalContext.tsx";
 import ProductComponentCart from "./itemComponent/ProductComponentCart.tsx";
 import {CartContainer, CartPageContainer} from "./CartPage.styled.tsx";
 import PaginationButton from "../UI/PaginationButton.tsx";
-import {Link} from "react-router-dom";
-import {HiChevronLeft} from "react-icons/hi";
+import ContinueShoppingButton from "../UI/continueShoppingButton/continueShoppingButton.tsx";
 
 enum PromoCode {
     PERCENTAGE15 = "PasS",
@@ -43,7 +42,7 @@ const CartPage = () => {
                 ))}
             </CartContainer>
             <div className={"cart-options"}>
-                <Link to={"/ebs-fe-test/"}><HiChevronLeft/>CONTINUE SHOPPING</Link>
+                <ContinueShoppingButton/>
                 {cart.length > 0 &&
                     (<div>
                         <div className={"promocode-container"}>
